@@ -18,3 +18,4 @@ func permutation<T>(_ a: [T], _ n: Int) { // Wirth 순열 알고리즘
 
 var testing = [1, 2, 3]
 print(permutation(testing, 1))
+
