@@ -2,8 +2,6 @@ import UIKit
 
 import Foundation
 
-import Foundation
-
 func solution(_ name:String) -> Int { // https://nsios.tistory.com/125 참조함
     var result = 0
     let inputName = name.map { ($0) }
