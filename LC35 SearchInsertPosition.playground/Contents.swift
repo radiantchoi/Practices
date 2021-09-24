@@ -24,3 +24,32 @@ class Solution {
 
 // 이진 탐색을 잘 하려면, 재귀에 대해 잘 알아야 할 것 같다.
 // 또한, 인덱스 변수를 두 개 굴리는 법에 대해서도 알아야겠다.
+
+class Solution {
+    func searchInsert(_ nums: [Int], _ target: Int) -> Int {
+        if target > nums[nums.count-1] {
+            return nums.count
+        } else if target < nums[0] {
+            return 0
+        }
+        
+        var left = 0
+        var right = nums.count - 1
+        
+        while left <= right {
+            let center = left + (right-left)/2
+            
+            if nums[center] > target {
+                right = center - 1
+            } else if nums[center] < target {
+                left = center + 1
+            } else {
+                return center
+            }
+        }
+        
+        return left
+    }
+}
+
+// 앞 문제에서 복습한 것을 토대로 조금 더 시간 효율이 좋은 코드를 짰다.
