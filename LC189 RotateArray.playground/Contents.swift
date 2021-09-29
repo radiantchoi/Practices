@@ -24,3 +24,24 @@ class Solution {
 }
 
 // 시간복잡도를 줄일 때의 철칙 : 1스텝씩 진행할 것을 한꺼번에 진행하기
+
+class Solution {
+    func rotate(_ nums: inout [Int], _ k: Int) {
+        var rotating = 0
+        if k >= nums.count {
+            rotating = k % nums.count
+        } else {
+            rotating = k
+        }
+        
+        if rotating == 0 {
+            return
+        } else {
+            var chunk = nums[(nums.count-rotating)...nums.count-1]
+            nums.removeLast(rotating)
+            nums = chunk + nums
+        }
+    }
+}
+
+// 전체적으로 결이 비슷하게 짰군
