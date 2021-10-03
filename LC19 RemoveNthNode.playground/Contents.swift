@@ -43,3 +43,32 @@ class Solution {
 // 코딩 테스트 사이트의 링크드 리스트 문제는 기존의 메서드를 거의 쓸 수 없지만, 제한조건이 힌트가 될 수도 있겠다는 생각을 했다.
 // ==도 그 중 하나인데, ===를 대신 사용할 수 있다는 것을 유념하자.
 
+class Solution {
+    func removeNthFromEnd(_ head: ListNode?, _ n: Int) -> ListNode? {
+        let result = head!
+        var fast: ListNode? = head
+        var slow: ListNode? = head
+        
+        for _ in 1...n {
+            fast = fast?.next
+        }
+        
+        var prev: ListNode? = nil
+        while fast != nil {
+            fast = fast?.next
+            prev = slow
+            slow = slow?.next
+        }
+        
+        if slow === head { return slow?.next }
+        
+        prev?.next = slow?.next
+        slow?.next = nil
+        
+        return result
+    }
+}
+
+// 리팩터링 정도 되는 수준의 재도전.
+// 포인터 2개를 써야 한다는 건 기억했지만, 옵셔널 처리에서 미숙함을 보였다.
+// 실제로 nil이 등장할 수도 있기 때문에 강제 옵셔널 해제보다는 옵셔널임을 표시하는 ?를 쓰는 게 더 좋아보인다.
