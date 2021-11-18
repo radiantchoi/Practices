@@ -45,3 +45,14 @@ class Solution {
 }
 
 // 전체적으로 결이 비슷하게 짰군
+
+class Solution {
+    func rotate(_ nums: inout [Int], _ k: Int) {
+        var steps = nums.count - (k % nums.count)
+        let numsExt = nums + nums
+        
+        nums = Array(numsExt[(steps)...(steps+nums.count-1)])
+    }
+}
+
+// Sliding Window 방법론을 사용한 새 풀이!
