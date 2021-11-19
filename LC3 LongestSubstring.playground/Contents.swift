@@ -30,3 +30,33 @@ class Solution {
 // firstIndex(of: ) = of 뒤에 오는 조건을 만족하는 첫 번째 원소의 인덱스를 돌려준다
 // removeFirst(_:) = 앞에서부터 넣어준 숫자 갯수만큼의 원소를 지운다
 // 해당 문법에 대해 숙지하도록 하자.
+
+class Solution {
+    func lengthOfLongestSubstring(_ s: String) -> Int {
+        if s.count == 0 {
+            return 0
+        }
+        
+        var start = 0
+        var length = 0
+        let holder = s.map { String($0) }
+        
+        while start < holder.count {
+            if start + length >= holder.count {
+                break
+            } else {
+                let container = holder[start...start+length]
+                let containerSet = Set(container)
+                if container.count == containerSet.count {
+                    length += 1
+                } else {
+                    start += 1
+                }
+            }
+        }
+        
+        return length
+    }
+}
+
+// 내가 생각한 풀이로 다시 풀어서 통과한 것. 시간은 꽤 많이 걸렸지만, 그래도 발전했다.
