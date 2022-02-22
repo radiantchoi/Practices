@@ -29,3 +29,36 @@ class Solution {
 // 전후좌우 인덱스를 생각한 것까지는 좋았다.
 // 다만, 원하는 결과값이 나올 때까지 while이나 재귀 중 어떤 것을 써야 할지에 대한 감이 없었다.
 // inout을 사용한 참고 풀이에 상당히 감탄했다. 앞으로 그래프는 이 방법도 생각해야겠다.
+
+class Solution {
+    func floodFill(_ image: [[Int]], _ sr: Int, _ sc: Int, _ newColor: Int) -> [[Int]] {
+        var result = image
+        
+        if result[sr][sc] != newColor {
+            flood(&result, sr, sc, newColor)
+        }
+
+        return result
+    }
+    
+    func flood(_ image: inout [[Int]], _ sr: Int, _ sc: Int, _ newColor: Int) {
+        let prevColor = image[sr][sc]
+        image[sr][sc] = newColor
+        let newPoint = [(sr+1, sc), (sr-1, sc), (sr, sc-1), (sr, sc+1)]
+        
+        for (y, x) in newPoint {
+            if y >= image.count || y < 0 || x >= image[0].count || x < 0 {
+                continue
+            } else {
+                if image[y][x] == prevColor {
+                    flood(&image, y, x, newColor)
+                } else {
+                    continue
+                }
+            }
+        }
+    }
+    
+}
+
+// 성장했구나!!!
